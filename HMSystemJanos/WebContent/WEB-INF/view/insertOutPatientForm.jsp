@@ -10,6 +10,31 @@
 	</head>
 	
 	<body>
-	
+		<form action="PatientServlet?action=displayOutPatientForm" method="post">
+		    <p>Forename :</p>
+			<p><input type="text" name="forename" required></p>
+			<p>Surname :</p>
+			<p><input type="text" name="surname" required></p>
+			<p>Date Of Birth :</p>
+			<p><input type="date" name="dob" required></p>
+			<p>Gender :</p>
+			<p><input type="text" name="gender" required></p>
+			<p>Address :</p>
+			<p><input type="text" name="address" required></p>
+			<p>Phone Number :</p>
+			<p><input type="text" name="phone" required></p>
+			<p>Next Of Kin :</p>
+			<p><input type="text" name="kin" required></p>
+			<p>Doctor ID :</p>
+			<p><input type="text" name="docId" required></p>
+			<p>Department ID :</p>
+			<p><input type="text" name="deptId" required></p>
+			<p>Bed ID :</p>
+			<p><input type="text" name="bedId" required></p>	
+			<p>Appointment :</p>
+			<p><input type="date" name="appointment" required></p>
+	    	
+			<br><br>
+			<input type="submit" value="Submit Patient"></a>
 	</body>
 </html>

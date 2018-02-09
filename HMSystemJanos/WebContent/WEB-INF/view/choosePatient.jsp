@@ -8,6 +8,6 @@
 </head>
 <body>
 		<p><a href="PatientServlet?action=displayInPatientForm"><img src="https://images.mydoorsign.com/img/lg/S/inpatient-hospital-sign-s2-0246.png"></a></p>
-		<p><a href="PatientServlet?action=displayOutPatientPatientForm"><img src="https://images.mydoorsign.com/img/lg/S/outpatient-fractured-hand-symbol-sign-s2-0247.png"></a></p>
+		<p><a href="PatientServlet?action=displayOutPatientForm"><img src="https://images.mydoorsign.com/img/lg/S/outpatient-fractured-hand-symbol-sign-s2-0247.png"></a></p>
 </body>
 </html>

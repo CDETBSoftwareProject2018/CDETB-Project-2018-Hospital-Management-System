@@ -7,11 +7,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.ForeignKey;
 
+import com.sun.swing.internal.plaf.basic.resources.basic;
 
 // All Date format has been changed to LocalDate formatting
 @Entity
 public class Patient {
+	/**
+	 * Encapsulated Fields.
+	 * */
 	@Id @GeneratedValue
 	private int id;
 	@Column
@@ -23,7 +28,7 @@ public class Patient {
 	@Column
 	private LocalDate dateOfBirth;
 	@Column
-	private String gender;
+	private boolean gender;
 	@Column
 	private String address;
 	@Column
@@ -38,11 +43,14 @@ public class Patient {
 	private LocalDate admissionDate;
 	@Column
 	private LocalDate dischargeDate;
-	@Column
+	@Column //@ForeignKey
 	private int bedId;
 	@Column
 	private LocalDate appointmentDate;
 	
+	/**
+	 * Mutator Methods.
+	 * */
 	public int getId() {
 		return id;
 	}
@@ -67,11 +75,15 @@ public class Patient {
 	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
-	public String getGender() {
+	// This part will need to be tested.
+	public boolean getGender() {
 		return gender;
 	}
-	public void setGender(String gender) {
-		this.gender = gender;
+	public void setGender(boolean gender, String genderJSP) {
+		if(genderJSP.equals("Male"))
+			this.gender = gender;
+		else if(genderJSP.equals("Female"))
+			this.gender = gender;
 	}
 	public String getAddress() {
 		return address;
@@ -141,7 +153,7 @@ public class Patient {
 		result = prime * result + ((dischargeDate == null) ? 0 : dischargeDate.hashCode());
 		result = prime * result + doctorId;
 		result = prime * result + ((foreName == null) ? 0 : foreName.hashCode());
-		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
+		result = prime * result + (gender ? 1231 : 1237);
 		result = prime * result + id;
 		result = prime * result + (isOutpatient ? 1231 : 1237);
 		result = prime * result + ((nextOfKin == null) ? 0 : nextOfKin.hashCode());
@@ -195,10 +207,7 @@ public class Patient {
 				return false;
 		} else if (!foreName.equals(other.foreName))
 			return false;
-		if (gender == null) {
-			if (other.gender != null)
-				return false;
-		} else if (!gender.equals(other.gender))
+		if (gender != other.gender)
 			return false;
 		if (id != other.id)
 			return false;
@@ -222,12 +231,16 @@ public class Patient {
 		return true;
 	}
 	
+	/**
+	 * Constructors.
+	 * */
 	public Patient() {
 		
 	}
 	
-	public Patient(String foreName, String surName, LocalDate dateOfBirth2, String gender, String address, String phoneNumber,
-			String nextOfKin, int doctorId, int departmentId, LocalDate admissionDate2, LocalDate dischargeDate2, int bedId) {;
+	// Inpatient Constructor
+	public Patient(String foreName, String surName, LocalDate dateOfBirth2, boolean gender, String address, String phoneNumber,
+			String nextOfKin, int doctorId, int departmentId, LocalDate admissionDate2, LocalDate dischargeDate2, int bedId) {
 		this.foreName = foreName;
 		this.surName = surName;
 		this.dateOfBirth = dateOfBirth2;
@@ -240,12 +253,11 @@ public class Patient {
 		this.admissionDate = admissionDate2;
 		this.dischargeDate = dischargeDate2;
 		this.bedId = bedId;
-		
 	}
 	
-	public Patient(String foreName, String surName, LocalDate dateOfBirth2, String gender, String address, String phoneNumber,
-			String nextOfKin, int doctorId, int departmentId,int bedId,
-			LocalDate appointment) {;
+	// Outpatient Constructor
+	public Patient(String foreName, String surName, LocalDate dateOfBirth2, boolean gender, String address, String phoneNumber,
+			String nextOfKin, int doctorId, int departmentId,int bedId, LocalDate appointment) {
 		this.foreName = foreName;
 		this.surName = surName;
 		this.dateOfBirth = dateOfBirth2;
@@ -258,26 +270,10 @@ public class Patient {
 		this.bedId = bedId;
 		this.appointmentDate = appointment;
 	}
-	
-	public Patient(int id, String foreName, String surName, LocalDate dateOfBirth, String gender, String address,
-			String phoneNumber, String nextOfKin, int doctorId, int departmentId, LocalDate admissionDate,
-			LocalDate dischargeDate, int bedId, LocalDate appointmentDate) {
-		this.id = id;
-		this.foreName = foreName;
-		this.surName = surName;
-		this.dateOfBirth = dateOfBirth;
-		this.gender = gender;
-		this.address = address;
-		this.phoneNumber = phoneNumber;
-		this.nextOfKin = nextOfKin;
-		this.doctorId = doctorId;
-		this.departmentId = departmentId;
-		this.admissionDate = admissionDate;
-		this.dischargeDate = dischargeDate;
-		this.bedId = bedId;
-		this.appointmentDate = appointmentDate;
-	}
-	
+
+	/**
+	 * toString()
+	 * */
 	@Override
 	public String toString() {
 		return "Patient [id=" + id + ", foreName=" + foreName + ", surName=" + surName + ", dateOfBirth=" + dateOfBirth

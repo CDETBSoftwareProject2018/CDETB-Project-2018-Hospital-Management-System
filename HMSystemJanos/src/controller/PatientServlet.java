@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.Date;
-
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,24 +37,28 @@ public class PatientServlet extends HttpServlet {
 		if (action == null) 
 			action = "viewAll";
 		System.out.println("action: " + action);
+		
 		switch (action) {
 			
 			/* I want to try and send in information for one patient only, or at least redirect to a single insert page.*/
 		
-			/*case "insertInPatientForm":
-				insertInPatientForm(request, response);
-				break;
-			case "insertOutPatientForm":
-				insertOutPatientForm(request, response);
-				break;*/
 			case "checkPatient":
 				checkPatient(request, response);
 				break;
 			case "newPatientForm":
 				newPatientForm(request, response);
 				break;
-			case "insertPatient":
-				insertPatient(request, response);
+			case "displayInPatientForm":
+				displayInPatientForm(request,response);
+				break;
+			case "insertInPatient":
+				insertInPatient(request, response);
+				break;
+			case "displayOutPatientForm":
+				displayOutPatientForm(request,response);
+				break;
+			case "insertOutPatient":
+				insertOutPatient(request, response);
 				break;
 			case "updatePatientForm":
 				updatePatientForm(request, response);
@@ -65,8 +69,6 @@ public class PatientServlet extends HttpServlet {
 			case "deletePatient":
 				deletePatient(request, response);
 				break;
-			case "displayInPatientForm":
-				displayInPatientForm(request,response);
 			default:
 				displayPatients(request, response);
 				break;
@@ -77,29 +79,13 @@ public class PatientServlet extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	protected void displayInPatientForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("\\WEB-INF\\view\\insertInPatientForm.jsp");
-		dispatcher.forward(request, response);
-	}
-
-	
-	private void insertInPatientForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("\\WEB-INF\\view\\insertInPatientForm.jsp");
-		dispatcher.forward(request, response);
-	}
-	
-	private void insertOutPatientForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("\\WEB-INF\\view\\insertOutPatientForm.jsp");
-		dispatcher.forward(request, response);
-	}
-	
 	private void checkPatient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String patientType = request.getParameter("patientType");
 		request.setAttribute("patientType", patientType);
 		System.out.println(patientType);
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("\\WEB-INF\\view\\insertPatientForm.jsp");
 		dispatcher.forward(request, response);
-		
 	}
 	
 	private void newPatientForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -107,39 +93,54 @@ public class PatientServlet extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 	
-	private void insertPatient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void displayInPatientForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher dispatcher = request.getRequestDispatcher("\\WEB-INF\\view\\insertInPatientForm.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	private void insertInPatient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String foreName = request.getParameter("forename");
-		String surName= request.getParameter("surname");
-		
-		
-		
+		String surName= request.getParameter("surname");	
 		LocalDate dateOfBirth=LocalDate.parse(request.getParameter("dob"));
-		String gender = request.getParameter("gender");
+		boolean gender = Boolean.parseBoolean(request.getParameter("gender"));
 		String address = request.getParameter("address");
 		String phone = request.getParameter("phone");
 		String nextOfKin =request.getParameter("kin");
 		int doctorId= Integer.parseInt(request.getParameter("docId"));
 		int departmentId= Integer.parseInt(request.getParameter("deptId"));
 		int bedId= Integer.parseInt(request.getParameter("bedId"));
+		LocalDate admissionDate=LocalDate.parse(request.getParameter("admission"));
+		LocalDate dischargeDate=LocalDate.parse(request.getParameter("discharge"));
 		
+		Patient	patient = new Patient(foreName, surName, dateOfBirth, gender, address, phone, nextOfKin, doctorId, departmentId, admissionDate, dischargeDate, bedId);
 		
-		Patient patient = new Patient();
+		System.out.println("Patient: "+ patient);
 		
-		String patientType = request.getParameter("patientType");
-		request.setAttribute("patientType", patientType);
-		System.out.println(patientType);
+		patientDao.insertPatient(patient);
+		response.sendRedirect("PatientServlet?action=viewAll");
+	}
+	
+	protected void displayOutPatientForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher dispatcher = request.getRequestDispatcher("\\WEB-INF\\view\\insertOutPatientForm.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	private void insertOutPatient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		String foreName = request.getParameter("forename");
+		String surName= request.getParameter("surname");		
+		LocalDate dateOfBirth=LocalDate.parse(request.getParameter("dob"));
+		boolean gender = Boolean.parseBoolean(request.getParameter("gender"));
+		String address = request.getParameter("address");
+		String phone = request.getParameter("phone");
+		String nextOfKin =request.getParameter("kin");
+		int doctorId= Integer.parseInt(request.getParameter("docId"));
+		int departmentId= Integer.parseInt(request.getParameter("deptId"));
+		int bedId= Integer.parseInt(request.getParameter("bedId"));
+		LocalDate appointment = LocalDate.parse(request.getParameter("appointment"));
 		
-		if (patientType == "InPatient") {
-			LocalDate admissionDate=LocalDate.parse(request.getParameter("admission"));
-			LocalDate dischargeDate=LocalDate.parse(request.getParameter("discharge"));
-			patient = new Patient(foreName, surName, dateOfBirth, gender, address, phone, nextOfKin, doctorId, departmentId, admissionDate, dischargeDate, bedId);
-		}
-		else {
-			LocalDate appointment=LocalDate.parse(request.getParameter("appointment"));
-			patient = new Patient(foreName, surName, dateOfBirth, gender, address, phone, nextOfKin, doctorId, departmentId, bedId, appointment);
-		}
+		Patient patient = new Patient(foreName, surName, dateOfBirth, gender, address, phone, nextOfKin, doctorId, departmentId, bedId, appointment);
 		
 		System.out.println("Patient: "+ patient);
 		
@@ -160,6 +161,11 @@ public class PatientServlet extends HttpServlet {
 	}
 	
 	private void displayPatients(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<Patient> listOfPatients = patientDao.displayPatients();
+		System.out.println(listOfPatients);
+		
+		request.setAttribute("listOfPatients", listOfPatients);
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("\\WEB-INF\\view\\displayPatient.jsp");
 		dispatcher.forward(request, response);
 	}

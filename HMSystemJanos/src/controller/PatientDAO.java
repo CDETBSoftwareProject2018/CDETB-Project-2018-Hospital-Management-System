@@ -10,6 +10,23 @@ import model.Patient;
 
 public class PatientDAO {
 	
+	public List<Patient> displayPatients() {
+		List<Patient> listOfPatients = new ArrayList<>();
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		
+		try {
+			Query<Patient> query = session.createQuery("FROM Patient");
+			listOfPatients = query.list();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			session.close();
+		}
+		
+		return listOfPatients;
+	}
 	
 	public void insertPatient(Patient patient) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
