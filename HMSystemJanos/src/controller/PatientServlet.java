@@ -69,6 +69,8 @@ public class PatientServlet extends HttpServlet {
 			case "deletePatient":
 				deletePatient(request, response);
 				break;
+			case "displayResults&Prescription":
+				break;
 			default:
 				displayPatients(request, response);
 				break;
@@ -157,6 +159,10 @@ public class PatientServlet extends HttpServlet {
 	}
 	
 	private void deletePatient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+	
+	private void displayResultsAndPrescription(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}
 	

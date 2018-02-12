@@ -57,5 +57,6 @@
 		</c:choose>
 		<p><a href="PatientServlet?action=newPatientForm">Insert New Patient</a></p>
 		<p><a href="PatientServlet?action=updatePatientForm">Update An Existing Patient</a></p>
+		<p><a href="PatientServlet?action=displayResultsAndPrescription">View Patient Results and Print Prescription</a></p>
 	</body>
 </html>
