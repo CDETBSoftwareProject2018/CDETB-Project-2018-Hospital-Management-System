@@ -20,7 +20,7 @@
 					<tr>
 						<td>Forename</td>
 						<td>Surname</td>
-						<td>Patient Type</td>
+						<td>Is Outpatient</td>
 						<td>Date Of Birth</td>
 						<td>Gender</td>
 						<td>Address</td>
@@ -38,6 +38,18 @@
 						<td>${status.index + 1}</td>
 						<td>${patient.forename}</td>
 						<td>${patient.surname}</td>
+						<td>${patient.isOutpatient}</td>
+						<td>${patient.dob}</td>
+						<td>${patient.address}</td>
+						<td>${patient.phoneNumber}</td>
+						<td>${patient.nextOfKin}</td>
+						<td>${patient.doctorId}</td>
+						<td>${patient.departmentId}</td>
+						<td>${patient.admissionDate}</td>
+						<td>${patient.dischargeDate}</td>
+						<td>${patient.appointmentDate}</td>
+						<td><a href="PatientServlet?action=updatePatientForm=${patient.id}">Update</a></td>
+					<td><a href="BookServlet?action=deletePatient=${patient.id}">Delete</a></td>
 					</tr>
 				</c:forEach>
 				</table>
