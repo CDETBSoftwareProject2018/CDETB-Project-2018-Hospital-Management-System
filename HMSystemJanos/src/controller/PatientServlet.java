@@ -39,9 +39,6 @@ public class PatientServlet extends HttpServlet {
 		System.out.println("action: " + action);
 		
 		switch (action) {
-			
-			/* I want to try and send in information for one patient only, or at least redirect to a single insert page.*/
-		
 			case "checkPatient":
 				checkPatient(request, response);
 				break;
@@ -69,7 +66,14 @@ public class PatientServlet extends HttpServlet {
 			case "deletePatient":
 				deletePatient(request, response);
 				break;
+			case "searchPatientForm":
+				searchPatientForm(request, response);
+				break;
+			case "searchPatient":
+				searchPatient(request, response);
+				break;
 			case "displayResults&Prescription":
+				displayResultsAndPrescription(request, response);
 				break;
 			default:
 				displayPatients(request, response);
@@ -100,8 +104,7 @@ public class PatientServlet extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 	
-	private void insertInPatient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	private void insertInPatient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 		String foreName = request.getParameter("forename");
 		String surName= request.getParameter("surname");	
 		LocalDate dateOfBirth=LocalDate.parse(request.getParameter("dob"));
@@ -129,7 +132,6 @@ public class PatientServlet extends HttpServlet {
 	}
 	
 	private void insertOutPatient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
 		String foreName = request.getParameter("forename");
 		String surName= request.getParameter("surname");		
 		LocalDate dateOfBirth=LocalDate.parse(request.getParameter("dob"));
@@ -160,6 +162,14 @@ public class PatientServlet extends HttpServlet {
 	}
 	
 	private void deletePatient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+	
+	private void searchPatientForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+	
+	private void searchPatient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}
 	
