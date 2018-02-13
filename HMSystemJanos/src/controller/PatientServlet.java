@@ -149,7 +149,7 @@ public class PatientServlet extends HttpServlet {
 	}
 	
 	private void updatePatientForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("\\WEB-INF\\view\\insertOutPatientForm.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("\\WEB-INF\\view\\updatePatientForm.jsp");
 		dispatcher.forward(request, response);
 	}
 	
