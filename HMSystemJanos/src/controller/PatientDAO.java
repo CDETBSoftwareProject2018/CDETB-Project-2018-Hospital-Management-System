@@ -48,15 +48,19 @@ public class PatientDAO {
 		}
 	}
 	
-	public void updatePatient() {
+	public void updatePatient(Patient updatedPatient) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = null;
 		
 		try {
-			
+			tx = session.beginTransaction();
+			session.update(updatedPatient);
+			tx.commit();
 		}
 		catch(HibernateException e) {
-			
+			if(tx != null)
+				tx.rollback();
+			e.printStackTrace();
 		}
 		finally {
 			session.close();
