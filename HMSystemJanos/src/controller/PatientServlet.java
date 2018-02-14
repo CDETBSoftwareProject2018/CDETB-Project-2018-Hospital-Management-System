@@ -158,19 +158,45 @@ public class PatientServlet extends HttpServlet {
 	}
 	
 	private void updatePatient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/* Complete This: 14/02/18 */
+		/*
+		String foreName;
+		String surName;
+		LocalDate dateOfBirth;
+		boolean gender;
+		String address;
+		String phoneNumber;
+		String nextOfKin;
+		int doctorId;
+		int departmentId;
+		int bedId;
+		LocalDate appointment;
 		
+		Patient patient = new Patient(foreName, surName, dateOfBirth, gender, address, phoneNumber, nextOfKin, doctorId, departmentId, bedId, appointment);
+		patientDao.updatePatient(patient);
+		*/
+		response.sendRedirect("PatientServlet?action=viewAll");
 	}
 	
 	private void deletePatient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		int patientId = Integer.parseInt(request.getParameter("patientId"));
+		patientDao.deletePatient(patientId);
+		response.sendRedirect("PatientServlet?action=viewAll");
 	}
 	
 	private void searchPatientForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("\\WEB-INF\\view\\searchPatientForm.jsp");
+		dispatcher.forward(request, response);
 	}
 	
 	private void searchPatient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String searchName = request.getParameter("searchName");
+		int searchId = Integer.parseInt(request.getParameter("searchId"));
 		
+		List<Patient> listOfPatients = patientDao.searchPatient(searchName, searchId);
+		request.setAttribute("listOfBooks", listOfPatients);
+		
+		request.getRequestDispatcher("").forward(request, response);
 	}
 	
 	private void displayResultsAndPrescription(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

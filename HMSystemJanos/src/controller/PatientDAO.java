@@ -85,10 +85,10 @@ public class PatientDAO {
         }
 	}
 	
-	public List<Patient> searchPatient(String searchType, String searchName) {
+	public List<Patient> searchPatient(String searchName, int searchId) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 	    searchName = "%" + searchName + "%";
-	    String hql = "FROM Book WHERE " + searchType + " LIKE :text";
+	    String hql = "FROM Book WHERE " + searchId + " LIKE :text";
 	    Query<Patient> query = session.createQuery(hql);
 	    query.setParameter("text", searchName);
 	    List<Patient> listOfPatients = query.list();
