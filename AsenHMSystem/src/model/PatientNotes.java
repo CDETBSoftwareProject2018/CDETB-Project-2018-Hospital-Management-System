@@ -101,6 +101,4 @@ public class PatientNotes {
 	public String toString() {
 		return "PatientNotes [id=" + id + ", date=" + date + ", notes=" + notes + ", patient=" + patient + "]";
 	}
-	
-
 }

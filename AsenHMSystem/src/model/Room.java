@@ -97,6 +97,4 @@ public class Room {
 	public String toString() {
 		return "Room [roomId=" + roomId + ", ward=" + ward + ", roomCost=" + roomCost + "]";
 	}
-
-	
 }

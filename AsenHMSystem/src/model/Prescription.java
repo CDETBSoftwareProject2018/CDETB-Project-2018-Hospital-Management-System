@@ -113,6 +113,4 @@ public class Prescription {
 	public String toString() {
 		return "Prescription [id=" + id + ", date=" + date + ", notes=" + notes + ", patient=" + patient + "]";
 	}
-	
-	
 }

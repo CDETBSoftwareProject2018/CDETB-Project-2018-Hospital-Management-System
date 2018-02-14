@@ -198,6 +198,4 @@ public class Billing {
 				+ ", note=" + note + ", miscellaneousFee=" + miscellaneousFee + ", payment=" + payment + ", patient="
 				+ patient + "]";
 	}
-	
-
 }	
