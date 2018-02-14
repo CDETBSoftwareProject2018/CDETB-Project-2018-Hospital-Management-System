@@ -19,15 +19,11 @@ public class RoomCost {
 	
 	public RoomCost() {}
 	
-
-	
 	public RoomCost(String roomType, BigDecimal cost) {
 		super();
 		this.roomType = roomType;
 		this.cost = cost;
 	}
-
-
 
 	public int getRoomTypeId() {
 		return roomTypeId;
@@ -91,6 +87,4 @@ public class RoomCost {
 	public String toString() {
 		return "RoomCost [roomTypeId=" + roomTypeId + ", roomType=" + roomType + ", cost=" + cost + "]";
 	}
-
-	
 }

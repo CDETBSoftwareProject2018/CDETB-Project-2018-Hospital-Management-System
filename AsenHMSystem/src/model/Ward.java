@@ -96,7 +96,4 @@ public class Ward {
 	public String toString() {
 		return "Ward [wardId=" + wardId + ", name=" + name + ", department=" + department + "]";
 	}
-	
-	
-	
 }
