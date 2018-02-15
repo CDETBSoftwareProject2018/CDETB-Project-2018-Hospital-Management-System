@@ -18,7 +18,8 @@
 			<p>Date Of Birth :</p>
 			<p><input type="date" name="dob" required></p>
 			<p>Gender :</p>
-			<p><input type="text" name="gender" required></p>
+			<p><input type="radio" name="gender" value="male" checked> Male<br>
+  			   <input type="radio" name="gender" value="female"> Female</p>
 			<p>Address :</p>
 			<p><input type="text" name="address" required></p>
 			<p>Phone Number :</p>
@@ -36,5 +37,6 @@
 	    	
 			<br><br>
 			<input type="submit" value="Submit Patient"></a>
+		</form>
 	</body>
 </html>
