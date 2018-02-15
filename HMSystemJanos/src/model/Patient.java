@@ -76,15 +76,22 @@ public class Patient {
 		this.dateOfBirth = dateOfBirth;
 	}
 	// This part will need to be tested.
+	public boolean isOutpatient() {
+		return isOutpatient;
+	}
+	public void setOutpatient(boolean isOutpatient) {
+		this.isOutpatient = isOutpatient;
+	}
 	public boolean getGender() {
 		return gender;
 	}
 	public void setGender(boolean gender, String genderJSP) {
-		if(genderJSP.equals("Male"))
-			this.gender = gender;
-		else if(genderJSP.equals("Female"))
-			this.gender = gender;
+		//if(genderJSP.equals("Male"))
+		this.gender = gender;
+		//else if(genderJSP.equals("Female"))
+			//this.gender = gender;
 	}
+	//
 	public String getAddress() {
 		return address;
 	}
@@ -239,28 +246,30 @@ public class Patient {
 	}
 	
 	// Inpatient Constructor
-	public Patient(String foreName, String surName, LocalDate dateOfBirth2, boolean gender, String address, String phoneNumber,
-			String nextOfKin, int doctorId, int departmentId, LocalDate admissionDate2, LocalDate dischargeDate2, int bedId) {
+	public Patient(String foreName, String surName, boolean isOutpatient, LocalDate dateOfBirth, boolean gender, String address, String phoneNumber,
+			String nextOfKin, int doctorId, int departmentId, LocalDate admissionDate, LocalDate dischargeDate, int bedId) {
 		this.foreName = foreName;
 		this.surName = surName;
-		this.dateOfBirth = dateOfBirth2;
+		this.isOutpatient = isOutpatient;
+		this.dateOfBirth = dateOfBirth;
 		this.gender = gender;
 		this.address = address;
 		this.phoneNumber = phoneNumber;
 		this.nextOfKin = nextOfKin;
 		this.doctorId = doctorId;
 		this.departmentId = departmentId;
-		this.admissionDate = admissionDate2;
-		this.dischargeDate = dischargeDate2;
+		this.admissionDate = admissionDate;
+		this.dischargeDate = dischargeDate;
 		this.bedId = bedId;
 	}
 	
 	// Outpatient Constructor
-	public Patient(String foreName, String surName, LocalDate dateOfBirth2, boolean gender, String address, String phoneNumber,
+	public Patient(String foreName, String surName, boolean isOutpatient, LocalDate dateOfBirth, boolean gender, String address, String phoneNumber,
 			String nextOfKin, int doctorId, int departmentId,int bedId, LocalDate appointment) {
 		this.foreName = foreName;
 		this.surName = surName;
-		this.dateOfBirth = dateOfBirth2;
+		this.isOutpatient = isOutpatient;
+		this.dateOfBirth = dateOfBirth;
 		this.gender = gender;
 		this.address = address;
 		this.phoneNumber = phoneNumber;
