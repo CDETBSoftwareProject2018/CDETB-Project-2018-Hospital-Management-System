@@ -39,9 +39,9 @@ public class PatientServlet extends HttpServlet {
 		System.out.println("action: " + action);
 		
 		switch (action) {
-			case "checkPatient":
+			/*case "checkPatient":
 				checkPatient(request, response);
-				break;
+				break;*/
 			case "newPatientForm":
 				newPatientForm(request, response);
 				break;
@@ -85,17 +85,17 @@ public class PatientServlet extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	private void checkPatient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	/*private void checkPatient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String patientType = request.getParameter("patientType");
 		request.setAttribute("patientType", patientType);
 		System.out.println(patientType);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("\\WEB-INF\\view\\insertPatientForm.jsp");
 		dispatcher.forward(request, response);
-	}
+	}*/
 	
 	private void newPatientForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("\\WEB-INF\\view\\choosePatient.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("\\WEB-INF\\view\\newPatientForm.jsp");
 		dispatcher.forward(request, response);
 	}
 	
