@@ -10,7 +10,7 @@
 	</head>
 	
 	<body>
-		<form action="PatientServlet?action=dsiplayInPatientForm" method="post">
+		<form action="PatientServlet?action=insertInPatient" method="post">
 		    <p>Forename :</p>
 			<p><input type="text" name="forename" required></p>
 			<p>Surname :</p>
