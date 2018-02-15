@@ -76,7 +76,7 @@ public class PatientServlet extends HttpServlet {
 				displayResultsAndPrescription(request, response);
 				break;
 			default:
-				displayPatients(request, response);
+				displayAllPatients(request, response);
 				break;
 		}
 	}
@@ -200,16 +200,17 @@ public class PatientServlet extends HttpServlet {
 	}
 	
 	private void displayResultsAndPrescription(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("\\WEB-INF\\view\\printPrescriptionForm.jsp");
+		dispatcher.forward(request, response);
 	}
 	
-	private void displayPatients(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void displayAllPatients(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Patient> listOfPatients = patientDao.displayPatients();
 		System.out.println(listOfPatients);
 		
 		request.setAttribute("listOfPatients", listOfPatients);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("\\WEB-INF\\view\\displayPatient.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("\\WEB-INF\\view\\displayAllPatients.jsp");
 		dispatcher.forward(request, response);
 	}
 }
