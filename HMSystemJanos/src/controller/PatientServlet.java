@@ -105,7 +105,7 @@ public class PatientServlet extends HttpServlet {
 	}
 	
 	private void insertInPatient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
-		String foreName = request.getParameter("forename");
+		String foreName = request.getParameter("foreName");
 		String surName= request.getParameter("surname");	
 		boolean isOutpatient = Boolean.parseBoolean(request.getParameter("isOutpatient"));
 		LocalDate dateOfBirth=LocalDate.parse(request.getParameter("dob"));
@@ -134,7 +134,7 @@ public class PatientServlet extends HttpServlet {
 	}
 	
 	private void insertOutPatient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String foreName = request.getParameter("forename");
+		String foreName = request.getParameter("foreName");
 		String surName= request.getParameter("surname");	
 		boolean isOutpatient = Boolean.parseBoolean(request.getParameter("isOutpatient"));
 		LocalDate dateOfBirth=LocalDate.parse(request.getParameter("dob"));

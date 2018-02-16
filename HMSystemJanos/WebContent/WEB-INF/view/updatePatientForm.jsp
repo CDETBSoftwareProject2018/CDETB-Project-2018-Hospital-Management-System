@@ -23,7 +23,7 @@
 			Patient Name: ${patient.foreName + patient.surName}
 			
 			<p>Surname :</p>
-			<p><input type="text" name="surname" value="${patient.surName}"  size="30"></p>
+			<p><input type="text" name="surName" value="${patient.surName}"  size="30"></p>
 			<p>Date Of Birth :</p>
 			<p><input type="date" name="dob" value="${patient.dob}"></p>
 		 	<p>Address :</p>

@@ -36,9 +36,9 @@
 					<c:forEach var="patient" items="${listOfPatients}" varStatus="status">
 					<tr>
 						<td>${status.index + 1}</td>
-						<td>${patient.forename}</td>
-						<td>${patient.surname}</td>
-						<td>${patient.isOutpatient}</td>
+						<td>${patient.foreName}</td>
+						<td>${patient.surName}</td>
+						<!--<td>${patient.isOutpatient}</td>-->
 						<td>${patient.dob}</td>
 						<td>${patient.address}</td>
 						<td>${patient.phoneNumber}</td>

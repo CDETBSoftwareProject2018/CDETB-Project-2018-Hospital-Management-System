@@ -12,9 +12,9 @@
 	<body>
 		<form action="PatientServlet?action=insertInPatient" method="post">
 		    <p>Forename :</p>
-			<p><input type="text" name="forename" required></p>
+			<p><input type="text" name="foreName" required></p>
 			<p>Surname :</p>
-			<p><input type="text" name="surname" required></p>
+			<p><input type="text" name="surName" required></p>
 			<p>Date Of Birth :</p>
 			<p><input type="date" name="dob" required></p>
 			<p>Gender :</p>
@@ -36,8 +36,7 @@
 			<p><input type="date" name="admission" required></p>
 			<p>Discharge Date :</p>
 			<p><input type="date" name="discharge" required></p>
-	    	
-			<br><br>
+			<br>
 			<input type="submit" value="Submit Patient"></a>
 		</form>
 	</body>
