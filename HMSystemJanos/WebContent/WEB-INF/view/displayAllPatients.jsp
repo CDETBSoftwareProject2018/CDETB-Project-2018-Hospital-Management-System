@@ -18,6 +18,7 @@
 			<c:otherwise>
 				<table style="border: 1px solid black;  padding: 10px;">
 					<tr>
+						<td>Id</td>
 						<td>Forename</td>
 						<td>Surname</td>
 						<td>Is Outpatient</td>
