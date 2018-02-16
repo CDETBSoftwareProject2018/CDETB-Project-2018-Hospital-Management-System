@@ -76,10 +76,10 @@ public class Patient {
 		this.dateOfBirth = dateOfBirth;
 	}
 	// This part will need to be tested.
-	public boolean isOutpatient() {
+	public boolean getIsOutpatient() {
 		return isOutpatient;
 	}
-	public void setOutpatient(boolean isOutpatient) {
+	public void setIsOutpatient(boolean isOutpatient) {
 		this.isOutpatient = isOutpatient;
 	}
 	public boolean getGender() {

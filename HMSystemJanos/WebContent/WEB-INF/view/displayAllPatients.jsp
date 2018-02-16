@@ -38,8 +38,8 @@
 						<td>${status.index + 1}</td>
 						<td>${patient.foreName}</td>
 						<td>${patient.surName}</td>
-						<!--<td>${patient.isOutpatient}</td>-->
-						<td>${patient.dob}</td>
+						<td>${patient.isOutpatient}</td>
+						<td>${patient.dateOfBirth}</td>
 						<td>${patient.address}</td>
 						<td>${patient.phoneNumber}</td>
 						<td>${patient.nextOfKin}</td>
