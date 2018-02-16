@@ -36,6 +36,7 @@ public class PatientDAO {
 			tx=session.beginTransaction();
 			Integer id = (Integer)session.save(patient);
 			System.out.println("Patient added to the database, Patient id: "+id);
+			tx.commit();
 		}
 		catch(HibernateException e) {
 			if (tx!=null) {
@@ -88,7 +89,7 @@ public class PatientDAO {
 	public List<Patient> searchPatient(String searchName, int searchId) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 	    searchName = "%" + searchName + "%";
-	    String hql = "FROM Book WHERE " + searchId + " LIKE :text";
+	    String hql = "FROM Patient WHERE " + searchId + " LIKE :text";
 	    Query<Patient> query = session.createQuery(hql);
 	    query.setParameter("text", searchName);
 	    List<Patient> listOfPatients = query.list();
