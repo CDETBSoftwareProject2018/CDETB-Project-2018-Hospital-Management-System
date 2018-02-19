@@ -109,9 +109,9 @@ public class PatientServlet extends HttpServlet {
 		String surName= request.getParameter("surname");	
 		boolean isOutpatient = Boolean.parseBoolean(request.getParameter("isOutpatient"));
 		LocalDate dateOfBirth=LocalDate.parse(request.getParameter("dob"));
-		boolean gender = Boolean.parseBoolean(request.getParameter("gender"));
+		String gender = request.getParameter("gender");
 		String address = request.getParameter("address");
-		String phone = request.getParameter("phone");
+		String phoneNumber = request.getParameter("phone");
 		String nextOfKin =request.getParameter("kin");
 		int doctorId= Integer.parseInt(request.getParameter("docId"));
 		int departmentId= Integer.parseInt(request.getParameter("deptId"));
@@ -119,7 +119,7 @@ public class PatientServlet extends HttpServlet {
 		LocalDate admissionDate=LocalDate.parse(request.getParameter("admission"));
 		LocalDate dischargeDate=LocalDate.parse(request.getParameter("discharge"));
 		
-		Patient patient = new Patient(foreName, surName, isOutpatient, dateOfBirth, gender, address, phone, nextOfKin, 
+		Patient patient = new Patient(isOutpatient, foreName, surName, dateOfBirth, gender, address, phoneNumber, nextOfKin, 
 				doctorId, departmentId, admissionDate, dischargeDate, bedId);
 		
 		System.out.println("Patient: "+ patient);
@@ -136,18 +136,18 @@ public class PatientServlet extends HttpServlet {
 	private void insertOutPatient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String foreName = request.getParameter("foreName");
 		String surName= request.getParameter("surname");	
-		boolean isOutpatient = Boolean.parseBoolean(request.getParameter("isOutpatient"));
 		LocalDate dateOfBirth=LocalDate.parse(request.getParameter("dob"));
-		boolean gender = Boolean.parseBoolean(request.getParameter("gender"));
+		boolean isOutpatient = Boolean.parseBoolean(request.getParameter("isOutpatient"));
+		String gender = request.getParameter("gender");
 		String address = request.getParameter("address");
-		String phone = request.getParameter("phone");
+		String phoneNumber = request.getParameter("phone");
 		String nextOfKin =request.getParameter("kin");
 		int doctorId= Integer.parseInt(request.getParameter("docId"));
 		int departmentId= Integer.parseInt(request.getParameter("deptId"));
 		int bedId= Integer.parseInt(request.getParameter("bedId"));
 		LocalDate appointment = LocalDate.parse(request.getParameter("appointment"));
 		
-		Patient patient = new Patient(foreName, surName, isOutpatient, dateOfBirth, gender, address, phone, nextOfKin, 
+		Patient patient = new Patient(isOutpatient, foreName, surName, dateOfBirth, gender, address, phoneNumber, nextOfKin, 
 				doctorId, departmentId, bedId, appointment);
 		
 		System.out.println("Patient: "+ patient);

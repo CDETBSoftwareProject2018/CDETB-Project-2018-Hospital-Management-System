@@ -30,7 +30,7 @@
 						<td>Doctor Id</td>
 						<td>Department Id</td>
 						<td>Admission Date</td>
-						<td>Discharge Id</td>
+						<td>Discharge Date</td>
 						<td>Bed Id</td>
 						<td>Appointment</td>
 					</tr>
@@ -41,6 +41,7 @@
 						<td>${patient.surName}</td>
 						<td>${patient.isOutpatient}</td>
 						<td>${patient.dateOfBirth}</td>
+						<td>${patient.gender}</td>
 						<td>${patient.address}</td>
 						<td>${patient.phoneNumber}</td>
 						<td>${patient.nextOfKin}</td>
@@ -48,6 +49,7 @@
 						<td>${patient.departmentId}</td>
 						<td>${patient.admissionDate}</td>
 						<td>${patient.dischargeDate}</td>
+						<td>${patient.bedId}</td>
 						<td>${patient.appointmentDate}</td>
 						<td><a href="PatientServlet?action=updatePatientForm=${patient.id}">Update</a></td>
 					<td><a href="BookServlet?action=deletePatient=${patient.id}">Delete</a></td>
