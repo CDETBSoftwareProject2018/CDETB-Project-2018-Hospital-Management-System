@@ -107,9 +107,9 @@ public class PatientServlet extends HttpServlet {
 	private void insertInPatient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 		String foreName = request.getParameter("foreName");
 		String surName= request.getParameter("surname");	
-		boolean isOutpatient = Boolean.parseBoolean(request.getParameter("isOutpatient"));
 		LocalDate dateOfBirth=LocalDate.parse(request.getParameter("dob"));
-		String gender = request.getParameter("gender");
+		boolean isOutpatient = Boolean.parseBoolean(request.getParameter("isOutpatient"));
+		boolean gender = Boolean.parseBoolean(request.getParameter("gender"));
 		String address = request.getParameter("address");
 		String phoneNumber = request.getParameter("phone");
 		String nextOfKin =request.getParameter("kin");
@@ -119,7 +119,7 @@ public class PatientServlet extends HttpServlet {
 		LocalDate admissionDate=LocalDate.parse(request.getParameter("admission"));
 		LocalDate dischargeDate=LocalDate.parse(request.getParameter("discharge"));
 		
-		Patient patient = new Patient(isOutpatient, foreName, surName, dateOfBirth, gender, address, phoneNumber, nextOfKin, 
+		Patient patient = new Patient(foreName, surName, dateOfBirth, isOutpatient, gender, address, phoneNumber, nextOfKin, 
 				doctorId, departmentId, admissionDate, dischargeDate, bedId);
 		
 		System.out.println("Patient: "+ patient);
@@ -138,7 +138,7 @@ public class PatientServlet extends HttpServlet {
 		String surName= request.getParameter("surname");	
 		LocalDate dateOfBirth=LocalDate.parse(request.getParameter("dob"));
 		boolean isOutpatient = Boolean.parseBoolean(request.getParameter("isOutpatient"));
-		String gender = request.getParameter("gender");
+		boolean gender = Boolean.parseBoolean(request.getParameter("gender"));
 		String address = request.getParameter("address");
 		String phoneNumber = request.getParameter("phone");
 		String nextOfKin =request.getParameter("kin");
@@ -147,7 +147,7 @@ public class PatientServlet extends HttpServlet {
 		int bedId= Integer.parseInt(request.getParameter("bedId"));
 		LocalDate appointment = LocalDate.parse(request.getParameter("appointment"));
 		
-		Patient patient = new Patient(isOutpatient, foreName, surName, dateOfBirth, gender, address, phoneNumber, nextOfKin, 
+		Patient patient = new Patient(foreName, surName, dateOfBirth, isOutpatient, gender, address, phoneNumber, nextOfKin, 
 				doctorId, departmentId, bedId, appointment);
 		
 		System.out.println("Patient: "+ patient);
@@ -162,11 +162,9 @@ public class PatientServlet extends HttpServlet {
 	}
 	
 	private void updatePatient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String foreName = request.getParameter("foreName");
 		String surName= request.getParameter("surname");	
 		LocalDate dateOfBirth=LocalDate.parse(request.getParameter("dob"));
 		boolean isOutpatient = Boolean.parseBoolean(request.getParameter("isOutpatient"));
-		String gender = request.getParameter("gender");
 		String address = request.getParameter("address");
 		String phoneNumber = request.getParameter("phone");
 		String nextOfKin =request.getParameter("kin");
@@ -174,9 +172,10 @@ public class PatientServlet extends HttpServlet {
 		int departmentId= Integer.parseInt(request.getParameter("deptId"));
 		int bedId= Integer.parseInt(request.getParameter("bedId"));
 		
-		Patient patient = new Patient(foreName, surName, dateOfBirth, gender, address, phoneNumber, nextOfKin, doctorId, departmentId, bedId);
-		patientDao.updatePatient(patient);
+		Patient patient = new Patient(surName, dateOfBirth, isOutpatient, address, phoneNumber, nextOfKin,
+				doctorId, departmentId, bedId);
 		
+		patientDao.updatePatient(patient);
 		response.sendRedirect("PatientServlet?action=viewAll");
 	}
 	

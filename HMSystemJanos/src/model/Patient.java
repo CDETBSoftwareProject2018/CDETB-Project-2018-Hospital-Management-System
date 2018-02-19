@@ -28,7 +28,7 @@ public class Patient {
 	@Column
 	private LocalDate dateOfBirth;
 	@Column
-	private String gender;
+	private boolean gender;
 	@Column
 	private String address;
 	@Column
@@ -82,13 +82,12 @@ public class Patient {
 	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
-	public String getGender() {
+	public boolean getGender() {
 		return gender;
 	}
-	public void setGender(String gender) {
+	public void setGender(boolean gender) {
 		this.gender = gender;
 	}
-	
 	public String getAddress() {
 		return address;
 	}
@@ -157,7 +156,7 @@ public class Patient {
 		result = prime * result + ((dischargeDate == null) ? 0 : dischargeDate.hashCode());
 		result = prime * result + doctorId;
 		result = prime * result + ((foreName == null) ? 0 : foreName.hashCode());
-		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
+		result = prime * result + (gender ? 1231 : 1237);
 		result = prime * result + id;
 		result = prime * result + (isOutpatient ? 1231 : 1237);
 		result = prime * result + ((nextOfKin == null) ? 0 : nextOfKin.hashCode());
@@ -211,10 +210,7 @@ public class Patient {
 				return false;
 		} else if (!foreName.equals(other.foreName))
 			return false;
-		if (gender == null) {
-			if (other.gender != null)
-				return false;
-		} else if (!gender.equals(other.gender))
+		if (gender != other.gender)
 			return false;
 		if (id != other.id)
 			return false;
@@ -244,9 +240,8 @@ public class Patient {
 	public Patient() {
 		
 	}
-	
 	// Inpatient Constructor
-	public Patient(boolean isOutpatient, String foreName, String surName, LocalDate dateOfBirth, String gender, String address, String phoneNumber,
+	public Patient(String foreName, String surName, LocalDate dateOfBirth, boolean isOutpatient, boolean gender, String address, String phoneNumber,
 			String nextOfKin, int doctorId, int departmentId, LocalDate admissionDate, LocalDate dischargeDate, int bedId) {
 		this.isOutpatient = isOutpatient;
 		this.foreName = foreName;
@@ -262,14 +257,13 @@ public class Patient {
 		this.dischargeDate = dischargeDate;
 		this.bedId = bedId;
 	}
-	
 	// Outpatient Constructor
-	public Patient(boolean isOutpatient, String foreName, String surName, LocalDate dateOfBirth, String gender, String address, String phoneNumber,
+	public Patient(String foreName, String surName, LocalDate dateOfBirth, boolean isOutpatient, boolean gender, String address, String phoneNumber,
 			String nextOfKin, int doctorId, int departmentId,int bedId, LocalDate appointment) {
-		this.isOutpatient = isOutpatient;
 		this.foreName = foreName;
 		this.surName = surName;
 		this.dateOfBirth = dateOfBirth;
+		this.isOutpatient = isOutpatient;
 		this.gender = gender;
 		this.address = address;
 		this.phoneNumber = phoneNumber;
@@ -279,13 +273,12 @@ public class Patient {
 		this.bedId = bedId;
 		this.appointmentDate = appointment;
 	}
-
-	public Patient(String foreName, String surName, LocalDate dateOfBirth, String gender, String address,
-			String phoneNumber, String nextOfKin, int doctorId, int departmentId, int bedId) {
-		this.foreName = foreName;
+	// Update Patient Constructor
+	public Patient(String surName, LocalDate dateOfBirth, boolean isOutpatient, String address, String phoneNumber,
+			String nextOfKin, int doctorId, int departmentId, int bedId) {
 		this.surName = surName;
 		this.dateOfBirth = dateOfBirth;
-		this.gender = gender;
+		this.isOutpatient = isOutpatient;
 		this.address = address;
 		this.phoneNumber = phoneNumber;
 		this.nextOfKin = nextOfKin;
@@ -293,6 +286,7 @@ public class Patient {
 		this.departmentId = departmentId;
 		this.bedId = bedId;
 	}
+	
 	/**
 	 * toString()
 	 * */
