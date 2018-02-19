@@ -34,13 +34,21 @@
 						<td>Appointment</td>
 					</tr>
 					<c:forEach var="patient" items="${listOfPatients}" varStatus="status">
+					${patient.gender}
 					<tr>
 						<td>${status.index + 1}</td>
 						<td>${patient.foreName}</td>
 						<td>${patient.surName}</td>
 						<td>${patient.isOutpatient}</td>
 						<td>${patient.dateOfBirth}</td>
-						<td>${patient.gender}</td>
+						<td>
+							<c:if test="${patient.gender == true}">
+								Male
+							</c:if> 
+							<c:if test="${patient.gender == false}">
+								Female
+							</c:if> 
+						</td>
 						<td>${patient.address}</td>
 						<td>${patient.phoneNumber}</td>
 						<td>${patient.nextOfKin}</td>
@@ -50,8 +58,8 @@
 						<td>${patient.dischargeDate}</td>
 						<td>${patient.bedId}</td>
 						<td>${patient.appointmentDate}</td>
-						<td><a href="PatientServlet?action=updatePatientForm=${patient.id}">Update</a></td>
-					<td><a href="BookServlet?action=deletePatient=${patient.id}">Delete</a></td>
+						<td><a href="PatientServlet?action=updatePatientForm&patientId=${patient.id}">Update</a></td>
+					<td><a href="PatientServlet?action=deletePatient&patientId=${patient.id}">Delete</a></td>
 					</tr>
 				</c:forEach>
 				</table>
