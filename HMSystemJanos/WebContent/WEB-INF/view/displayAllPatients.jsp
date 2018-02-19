@@ -8,7 +8,6 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Patient Details</title>
 	</head>
-	
 	<body>
 		<h1>Patient Details</h1>
 		<c:choose>

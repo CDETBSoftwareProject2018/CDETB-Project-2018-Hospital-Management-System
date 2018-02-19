@@ -162,23 +162,21 @@ public class PatientServlet extends HttpServlet {
 	}
 	
 	private void updatePatient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/* Complete This: 14/02/18 */
-		/*
-		String foreName;
-		String surName;
-		LocalDate dateOfBirth;
-		boolean gender;
-		String address;
-		String phoneNumber;
-		String nextOfKin;
-		int doctorId;
-		int departmentId;
-		int bedId;
-		LocalDate appointment;
+		String foreName = request.getParameter("foreName");
+		String surName= request.getParameter("surname");	
+		LocalDate dateOfBirth=LocalDate.parse(request.getParameter("dob"));
+		boolean isOutpatient = Boolean.parseBoolean(request.getParameter("isOutpatient"));
+		String gender = request.getParameter("gender");
+		String address = request.getParameter("address");
+		String phoneNumber = request.getParameter("phone");
+		String nextOfKin =request.getParameter("kin");
+		int doctorId= Integer.parseInt(request.getParameter("docId"));
+		int departmentId= Integer.parseInt(request.getParameter("deptId"));
+		int bedId= Integer.parseInt(request.getParameter("bedId"));
 		
-		Patient patient = new Patient(foreName, surName, dateOfBirth, gender, address, phoneNumber, nextOfKin, doctorId, departmentId, bedId, appointment);
+		Patient patient = new Patient(foreName, surName, dateOfBirth, gender, address, phoneNumber, nextOfKin, doctorId, departmentId, bedId);
 		patientDao.updatePatient(patient);
-		*/
+		
 		response.sendRedirect("PatientServlet?action=viewAll");
 	}
 	
