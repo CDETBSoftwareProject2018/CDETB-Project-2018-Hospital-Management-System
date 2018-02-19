@@ -280,6 +280,19 @@ public class Patient {
 		this.appointmentDate = appointment;
 	}
 
+	public Patient(String foreName, String surName, LocalDate dateOfBirth, String gender, String address,
+			String phoneNumber, String nextOfKin, int doctorId, int departmentId, int bedId) {
+		this.foreName = foreName;
+		this.surName = surName;
+		this.dateOfBirth = dateOfBirth;
+		this.gender = gender;
+		this.address = address;
+		this.phoneNumber = phoneNumber;
+		this.nextOfKin = nextOfKin;
+		this.doctorId = doctorId;
+		this.departmentId = departmentId;
+		this.bedId = bedId;
+	}
 	/**
 	 * toString()
 	 * */

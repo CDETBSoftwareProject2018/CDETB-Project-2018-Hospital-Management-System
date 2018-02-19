@@ -8,7 +8,6 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Insert An Inpatient</title>
 	</head>
-	
 	<body>
 		<form action="PatientServlet?action=insertInPatient" method="post">
 		    <p>Forename :</p>
