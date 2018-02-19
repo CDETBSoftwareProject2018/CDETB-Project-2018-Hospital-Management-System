@@ -28,7 +28,7 @@ public class Patient {
 	@Column
 	private LocalDate dateOfBirth;
 	@Column
-	private boolean gender;
+	private String gender;
 	@Column
 	private String address;
 	@Column
@@ -57,6 +57,13 @@ public class Patient {
 	public void setId(int id) {
 		this.id = id;
 	}
+	// This part will need to be tested.
+	public boolean getIsOutpatient() {
+		return isOutpatient;
+	}
+	public void setIsOutpatient(boolean isOutpatient) {
+		this.isOutpatient = isOutpatient;
+	}
 	public String getForeName() {
 		return foreName;
 	}
@@ -75,23 +82,13 @@ public class Patient {
 	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
-	// This part will need to be tested.
-	public boolean getIsOutpatient() {
-		return isOutpatient;
-	}
-	public void setIsOutpatient(boolean isOutpatient) {
-		this.isOutpatient = isOutpatient;
-	}
-	public boolean getGender() {
+	public String getGender() {
 		return gender;
 	}
-	public void setGender(boolean gender, String genderJSP) {
-		//if(genderJSP.equals("Male"))
+	public void setGender(String gender) {
 		this.gender = gender;
-		//else if(genderJSP.equals("Female"))
-			//this.gender = gender;
 	}
-	//
+	
 	public String getAddress() {
 		return address;
 	}
@@ -160,7 +157,7 @@ public class Patient {
 		result = prime * result + ((dischargeDate == null) ? 0 : dischargeDate.hashCode());
 		result = prime * result + doctorId;
 		result = prime * result + ((foreName == null) ? 0 : foreName.hashCode());
-		result = prime * result + (gender ? 1231 : 1237);
+		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
 		result = prime * result + id;
 		result = prime * result + (isOutpatient ? 1231 : 1237);
 		result = prime * result + ((nextOfKin == null) ? 0 : nextOfKin.hashCode());
@@ -214,7 +211,10 @@ public class Patient {
 				return false;
 		} else if (!foreName.equals(other.foreName))
 			return false;
-		if (gender != other.gender)
+		if (gender == null) {
+			if (other.gender != null)
+				return false;
+		} else if (!gender.equals(other.gender))
 			return false;
 		if (id != other.id)
 			return false;
@@ -246,11 +246,11 @@ public class Patient {
 	}
 	
 	// Inpatient Constructor
-	public Patient(String foreName, String surName, boolean isOutpatient, LocalDate dateOfBirth, boolean gender, String address, String phoneNumber,
+	public Patient(boolean isOutpatient, String foreName, String surName, LocalDate dateOfBirth, String gender, String address, String phoneNumber,
 			String nextOfKin, int doctorId, int departmentId, LocalDate admissionDate, LocalDate dischargeDate, int bedId) {
+		this.isOutpatient = isOutpatient;
 		this.foreName = foreName;
 		this.surName = surName;
-		this.isOutpatient = isOutpatient;
 		this.dateOfBirth = dateOfBirth;
 		this.gender = gender;
 		this.address = address;
@@ -264,11 +264,11 @@ public class Patient {
 	}
 	
 	// Outpatient Constructor
-	public Patient(String foreName, String surName, boolean isOutpatient, LocalDate dateOfBirth, boolean gender, String address, String phoneNumber,
+	public Patient(boolean isOutpatient, String foreName, String surName, LocalDate dateOfBirth, String gender, String address, String phoneNumber,
 			String nextOfKin, int doctorId, int departmentId,int bedId, LocalDate appointment) {
+		this.isOutpatient = isOutpatient;
 		this.foreName = foreName;
 		this.surName = surName;
-		this.isOutpatient = isOutpatient;
 		this.dateOfBirth = dateOfBirth;
 		this.gender = gender;
 		this.address = address;

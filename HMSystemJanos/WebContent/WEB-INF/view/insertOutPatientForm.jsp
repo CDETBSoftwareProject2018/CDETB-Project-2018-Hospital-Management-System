@@ -18,8 +18,8 @@
 			<p>Date Of Birth :</p>
 			<p><input type="date" name="dob" required></p>
 			<p>Gender :</p>
-			<p><input type="radio" name="gender" value="male" checked>Male<br>
-  			   <input type="radio" name="gender" value="female">Female</p>
+			<p><input type="radio" name="gender" value="Male" checked>Male<br>
+  			   <input type="radio" name="gender" value="Female">Female</p>
 			<p>Address :</p>
 			<p><input type="text" name="address" required></p>
 			<p>Phone Number :</p>
